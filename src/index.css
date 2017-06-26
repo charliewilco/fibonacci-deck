@@ -1,0 +1,31 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html,
+body,
+.Root {
+  height: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+.Tray {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.Card {
+  box-shadow: 0 0 4px rgba(0, 0, 0, .035), 0 4px 8px rgba(0, 0, 0,.07);
+}

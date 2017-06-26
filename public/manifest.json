@@ -1,0 +1,15 @@
+{
+  "short_name": "Fibonacci",
+  "name": "Fibonacci Deck",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#F2D770",
+  "background_color": "#6794AE"
+}
