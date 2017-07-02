@@ -37,7 +37,7 @@ const Tray = ({ children }) =>
     position='fixed'
     whiteSpace='nowrap'
     overflowX='auto'
-    background='#F4F5F5'
+    background='#063651'
     padding={16}
     bottom={0}
     left={0}
@@ -47,10 +47,10 @@ const Tray = ({ children }) =>
 
 const OpenClose = ({ open, onClick }) =>
   <Block cursor='pointer' position='absolute' left={0} right={0} bottom={0} onClick={onClick} padding={8} textAlign='right'>
-    <img src={open ?  'https://icon.now.sh/chevronDown/CCC' : 'https://icon.now.sh/chevronUp/CCC'} />
+    <img src={open ?  'https://icon.now.sh/chevronDown/CCC' : 'https://icon.now.sh/chevronUp/CCC'} alt='down icon' />
   </Block>
 
-const colors = ['#DC7465', '#6794AE', '#F2D770']
+const colors = ['#E05557', '#FFBA00', '#00B6F0']
 
 export default class extends Component {
   state = {
@@ -64,15 +64,15 @@ export default class extends Component {
     return (
       <Block fontFamily='Hind' height='100%'>
         <Helmet>
-          {(color === '#F2D770' || color === null) && <meta name='theme-color' content='#F2D770' />}
-          {color === '#6794AE' && <meta name='theme-color' content='#6794AE' />}
-          {color === '#DC7465' && <meta name='theme-color' content='#DC7465' />}
+          {(color === '#FFBA00' || color === null) && <meta name='theme-color' content='#FFBA00' />}
+          {color === '#00B6F0' && <meta name='theme-color' content='#00B6F0' />}
+          {color === '#E05557' && <meta name='theme-color' content='#E05557' />}
         </Helmet>
-        <Flex alignItems='center' height={!open ? '100%' : 'calc(100% - 144px)'} position='relative'>
+        <Flex alignItems='center' height={!open ? '100%' : 'calc(100% - 144px)'} background='#092E41' position='relative'>
           {
             display === null
-            ? <p style={{ margin: 'auto', opacity: .5 }}>Tap a Card Below</p>
-            : <InlineBlock color={color} fontWeight={600} fontSize={display === 'Coffee' ? '5rem' : '12rem'} margin='auto'>{display}</InlineBlock>
+            ? <p style={{ margin: 'auto', opacity: .5, color: 'white' }}>Tap a Card Below</p>
+            : <InlineBlock color={color} fontWeight={600} fontSize={display === 'Coffee' || display === 'Defer' ? '5rem' : '12rem'} margin='auto'>{display}</InlineBlock>
           }
           <OpenClose open={open} onClick={() => this.setState({ open: !open })} />
         </Flex>
@@ -94,8 +94,9 @@ export default class extends Component {
               <Fib color={colors[2]} number={11} onClick={n => this.setState({ display: n, color: colors[2] })} />
               <Card color={colors[0]} onClick={() => this.setState({ display: '?', color: colors[0] })}>?</Card>
               <Card color={colors[1]} onClick={() => this.setState({ display: '∞', color: colors[1] })}>∞</Card>
-              <Card color={colors[2]} onClick={() => this.setState({ display: 'Coffee', color: colors[2] })}>
-                <img style={{ margin: '-5px 0 -5px', display: 'inline-block' }} src={coffee} />
+              <Card color={colors[2]} onClick={() => this.setState({ display: 'Defer', color: colors[2] })}>➳</Card>
+              <Card color={colors[0]} onClick={() => this.setState({ display: 'Coffee', color: colors[0] })}>
+                <img style={{ margin: '-5px 0 -5px', display: 'inline-block' }} alt='coffee pot' src={coffee} />
               </Card>
             </Tray>
           )
