@@ -8,11 +8,9 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-helmet": "^5.1.3",
+    "react-scripts": "1.0.7",
     "serve": "^6.0.0",
     "typeface-hind": "^0.0.28"
-  },
-  "devDependencies": {
-    "react-scripts": "1.0.7"
   },
   "now": {
     "alias": "fibonacci.now.sh"
