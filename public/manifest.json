@@ -3,12 +3,17 @@
   "name": "Fibonacci Deck",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon-fib-192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-fib-512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "theme_color": "#F2D770",
   "background_color": "#6794AE"

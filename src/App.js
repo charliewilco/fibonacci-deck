@@ -3,7 +3,7 @@ import 'typeface-hind'
 import './App.css'
 import coffee from './coffee.svg'
 import f from 'fib'
-import { Flex, Block, InlineBlock } from 'glamor-jsxstyle'
+import { Flex, Block, InlineBlock } from 'glamor/jsxstyle'
 import { Helmet } from 'react-helmet'
 
 const Fib = ({ number, color, onClick }) =>
