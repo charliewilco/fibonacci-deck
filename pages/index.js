@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Toggle from "../components/toggle";
 import Container from "../components/container";
 import Wrapper from "../components/wrapper";
@@ -44,6 +45,9 @@ export default class extends React.Component {
       <Toggle>
         {({ isOpen, onToggle }) => (
           <Container>
+            <Head>
+              <title>Fibonacci</title>
+            </Head>
             <ColorMeta color={this.state.color} />
             <Wrapper open={isOpen}>
               {this.state.display === null ? (
@@ -60,9 +64,8 @@ export default class extends React.Component {
                 {data.map((d, idx, _data) => {
                   const color = this.determineColor(idx);
                   return (
-                    <div style={{ display: "inline-block" }}>
+                    <div key={idx} style={{ display: "inline-block" }}>
                       <Card
-                        key={idx}
                         color={color}
                         onClick={() => this.update(d.value, color)}
                       >
