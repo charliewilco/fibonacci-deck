@@ -21,7 +21,6 @@ export default class MyDocument extends Document {
           />
           <link rel="stylesheet" href="/_next/static/style.css" />
           <link rel="icon" href="static/favicon.ico" />
-          <title>Fibonacci</title>
         </Head>
         <body>
           <Main />
