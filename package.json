@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "babel-plugin-styled-components": "^1.10.0",
     "fib": "^0.0.1",
     "next": "^7.0.2",
     "react": "^16.7.0",
@@ -14,5 +15,20 @@
     "start": "next start",
     "dev": "next dev -p 4678",
     "build": "next build"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "styled-components",
+        {
+          "ssr": true,
+          "displayName": false,
+          "preprocess": false
+        }
+      ]
+    ]
   }
 }
