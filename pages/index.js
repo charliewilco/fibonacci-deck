@@ -1,10 +1,15 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React from "react";
+import Toggle from "../components/toggle";
+import Container from "../components/container";
+import Wrapper from "../components/wrapper";
+import Intro from "../components/intro";
+import Stage from "../components/stage";
+import OpenClose from "../components/open-close";
+import Tray from "../components/tray";
+import Card from "../components/card";
+import data from "../components/data";
 import "../global.css";
-import f from "fib";
-
-import Coffee from "../components/coffee";
-// import { Helmet } from "react-helmet";
+import ColorMeta from "../components/color-meta";
 
 // TODO: Clean up array of cards
 // TODO: Use map to create cards
@@ -15,173 +20,62 @@ const Fib = ({ number, color, onClick }) => (
   </Card>
 );
 
-// const fib = Array().fill(12);
-
-const N = 12;
-const fib = Array.apply(null, { length: N })
-  .map(Number.call, Number)
-  .map(n => f(n))
-  .map(fn => ({ value: fn, display: fn }));
-console.log(fib);
-
-const data = [
-  {
-    value: 0,
-    display: 0
-  },
-  ...fib,
-  {
-    value: "?",
-    display: "?"
-  },
-  {
-    value: "∞",
-    display: "∞"
-  },
-  {
-    value: "Defer",
-    display: "➳"
-  },
-  {
-    value: "Coffee",
-    display: (
-      <Coffee
-        style={{ margin: "-5px 0 -5px", display: "inline-block" }}
-        alt="coffee pot"
-      />
-    )
-  }
-];
-
-// const Head = ({ color }) => (
-//   <Helmet>
-//     {(color === "#FFBA00" || color === null) && (
-//       <meta name="theme-color" content="#FFBA00" />
-//     )}
-//     {color === "#00B6F0" && <meta name="theme-color" content="#00B6F0" />}
-//     {color === "#E05557" && <meta name="theme-color" content="#E05557" />}
-//   </Helmet>
-// );
-
-const Card = styled.div`
-  display: inline-block;
-  color: white;
-  margin-left: 8px;
-  margin-right: 8px;
-  border-radius: 4px;
-  padding: 40px 8px;
-  background: ${props => props.color};
-  text-align: center;
-  font-size: 32px;
-  cursor: pointer;
-  font-weight: 300;
-  line-height: 1;
-  width: 84px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.035), 0 4px 8px rgba(0, 0, 0, 0.07);
-`;
-
-const Tray = styled.div`
-  display: block;
-  position: fixed;
-  white-space: nowrap;
-  overflow-x: auto;
-  background: #063651;
-  padding: 16px;
-  left: 0;
-  right: 0;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-`;
-
-const ChevronContainer = styled.div`
-  display: block;
-  cursor: pointer;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 8px;
-  text-align: right;
-`;
-
-const OpenClose = ({ open, onClick }) => (
-  <ChevronContainer onClick={onClick}>
-    <img
-      src={
-        open
-          ? "https://icon.now.sh/chevronDown/CCC"
-          : "https://icon.now.sh/chevronUp/CCC"
-      }
-      alt="down icon"
-    />
-  </ChevronContainer>
-);
-
-const Container = styled.div`
-  font-family: "Hind", sans-serif;
-  height: 100%;
-`;
-
-const colors = ["#E05557", "#FFBA00", "#00B6F0"];
-
-const Stage = styled.div`
-  color: ${props => props.color};
-  margin: auto;
-  font-weight: 600;
-  font-size: ${props =>
-    props.display === "Coffee" || props.display === "Defer" ? "5rem" : "12rem"};
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  background: #092e41;
-  position: relative;
-  align-items: center;
-  height: ${props => (!props.open ? "100%" : "calc(100% - 144px)")};
-`;
-
-const Intro = styled.p`
-  margin: auto;
-  opacity: 0.5;
-  color: white;
-`;
-
-export default class extends Component {
+export default class extends React.Component {
   state = {
     display: null,
-    open: true,
     color: "white"
   };
 
-  update = n => this.setState({ display: n });
+  determineColor(idx) {
+    const red = [0, 3, 6, 9, 12, 15, 18];
+    const yellow = [1, 4, 7, 10, 13, 16];
+    const colors = ["#E05557", "#FFBA00", "#00B6F0"];
+    return red.includes(idx)
+      ? colors[0]
+      : yellow.includes(idx)
+      ? colors[1]
+      : colors[2];
+  }
+
+  update = (n, color) => this.setState({ display: n, color });
 
   render() {
-    const { display, color, open } = this.state;
     return (
-      <Container>
-        <Wrapper open={open}>
-          {display === null ? (
-            <Intro>Tap a Card Below</Intro>
-          ) : (
-            <Stage color={color} display={display}>
-              {display}
-            </Stage>
-          )}
-          <OpenClose
-            open={open}
-            onClick={() => this.setState({ open: !open })}
-          />
-        </Wrapper>
-        {open && (
-          <Tray>
-            {data.map((d, idx) => (
-              <Card key={idx} color="teal" onClick={() => this.update(d.value)}>
-                {d.display}
-              </Card>
-            ))}
-          </Tray>
+      <Toggle>
+        {({ isOpen, onToggle }) => (
+          <Container>
+            <ColorMeta color={this.state.color} />
+            <Wrapper open={isOpen}>
+              {this.state.display === null ? (
+                <Intro>Tap a Card Below</Intro>
+              ) : (
+                <Stage color={this.state.color} display={this.state.display}>
+                  {this.state.display}
+                </Stage>
+              )}
+              <OpenClose open={isOpen} onClick={onToggle} />
+            </Wrapper>
+            {isOpen && (
+              <Tray>
+                {data.map((d, idx, _data) => {
+                  const color = this.determineColor(idx);
+                  return (
+                    <div style={{ display: "inline-block" }}>
+                      <Card
+                        key={idx}
+                        color={color}
+                        onClick={() => this.update(d.value, color)}
+                      >
+                        {d.display}
+                      </Card>
+                    </div>
+                  );
+                })}
+              </Tray>
+            )}
+          </Container>
         )}
-      </Container>
+      </Toggle>
     );
   }
 }
