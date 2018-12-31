@@ -8,7 +8,7 @@ import OpenClose from "../components/open-close";
 import Tray from "../components/tray";
 import Card from "../components/card";
 import data from "../components/data";
-import "../global.css";
+import "../components/global.css";
 import ColorMeta from "../components/color-meta";
 
 // TODO: Clean up array of cards
