@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+interface WrapperProps {
+  open: boolean;
+}
+
+const Wrapper = styled.div<WrapperProps>`
   display: flex;
   background: #092e41;
   position: relative;

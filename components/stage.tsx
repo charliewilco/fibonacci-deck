@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { DisplayVal } from './data';
 
-const Stage = styled.div`
+interface StageProps {
+  display?: DisplayVal
+}
+
+const Stage = styled.div<StageProps>`
   color: ${props => props.color};
   margin: auto;
   font-weight: 600;

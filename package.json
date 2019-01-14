@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.0",
     "fib": "^0.0.1",
     "next": "^7.0.2",
@@ -18,7 +19,8 @@
   },
   "babel": {
     "presets": [
-      "next/babel"
+      "next/babel",
+      "@zeit/next-typescript/babel"
     ],
     "plugins": [
       [
@@ -30,5 +32,11 @@
         }
       ]
     ]
+  },
+  "devDependencies": {
+    "@types/next": "^7.0.6",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/styled-components": "^4.1.5"
   }
 }

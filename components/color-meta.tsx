@@ -1,7 +1,12 @@
-import React from "react";
+import * as React from "react";
 import Head from "next/head";
 
-const ColorMeta = ({ color }) => (
+
+interface ColorMetaProps {
+  color: string;
+}
+
+const ColorMeta: React.FC<ColorMetaProps> = ({ color }) => (
   <Head>
     {(color === "#FFBA00" || color === null) && (
       <meta name="theme-color" content="#FFBA00" />
