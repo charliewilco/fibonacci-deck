@@ -8,29 +8,12 @@ import Stage from "../components/stage";
 import OpenClose from "../components/open-close";
 import Tray from "../components/tray";
 import Card from "../components/card";
-import fib from '../components/fib'
 import data, { DisplayVal } from "../components/data";
 import "../components/global.css";
 import ColorMeta from "../components/color-meta";
 
-// TODO: Clean up array of cards
-// TODO: Use map to create cards
 
-// interface FibProps {
-//   number: number;
-//   color: string;
-//   onClick: (x: any) => void;
-// }
-
-// const Fib: React.FC<FibProps> = ({ number, color, onClick }) => (
-//   <Card color={color} onClick={() => onClick(f(number))}>
-//     {f(number)}
-//   </Card>
-// );
-
-interface IndexProps {
-
-}
+interface IndexProps {}
 
 interface IndexState {
   color: string;
