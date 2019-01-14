@@ -1,4 +1,8 @@
-export default ({ style }) => (
+import * as React from "react";
+
+interface CoffeeProps { style: React.CSSProperties, alt: string }
+
+const Coffee: React.FC<CoffeeProps> = ({ style }) => (
   <svg
     style={style}
     width="31px"
@@ -16,3 +20,5 @@ export default ({ style }) => (
     </g>
   </svg>
 );
+
+export default Coffee;

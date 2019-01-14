@@ -1,21 +1,21 @@
 import React from "react";
-import f from "fib";
+import Coffee from "./coffee";
 
-import Coffee from "../components/coffee";
+export type DisplayVal =  number | "?" | "∞" | "Defer" | "Coffee";
 
-const N = 12;
-const fib = Array.apply(null, { length: N })
-  .map(Number.call, Number)
-  .map(n => f(n))
-  .map(fn => ({ value: fn, display: fn }));
-console.log(fib);
+interface DisplayData {
+  value: DisplayVal,
+  display: string | React.ReactNode;
+}
+
+const fib: DisplayData[]  = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144] .map((fn: number) => ({ value: fn, display: fn.toString() }));
 
 export const colors = ["#E05557", "#FFBA00", "#00B6F0"];
 
-const data = [
+const data: DisplayData[] = [
   {
     value: 0,
-    display: 0
+    display: "0"
   },
   ...fib,
   {

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 
 const ChevronContainer = styled.div`
@@ -12,7 +12,12 @@ const ChevronContainer = styled.div`
   text-align: right;
 `;
 
-const OpenClose = ({ open, onClick }) => (
+interface OpenCloseProps {
+  open: boolean;
+  onClick: (x: any) => void;
+}
+
+const OpenClose: React.FC<OpenCloseProps> = ({ open, onClick }) => (
   <ChevronContainer onClick={onClick}>
     <img
       src={

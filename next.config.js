@@ -13,7 +13,7 @@ module.exports = (phase, { defaultConfig }) => {
   // ✅ Put the require call here.
 
   const withCSS = require("@zeit/next-css");
-  //
+  const withTypeScript = require("@zeit/next-typescript");
 
-  return withCSS();
+  return withTypeScript(withCSS());
 };

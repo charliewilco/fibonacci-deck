@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Head from "next/head";
 import Toggle from "../components/toggle";
 import Container from "../components/container";
@@ -8,26 +8,25 @@ import Stage from "../components/stage";
 import OpenClose from "../components/open-close";
 import Tray from "../components/tray";
 import Card from "../components/card";
-import data from "../components/data";
+import data, { DisplayVal } from "../components/data";
 import "../components/global.css";
 import ColorMeta from "../components/color-meta";
 
-// TODO: Clean up array of cards
-// TODO: Use map to create cards
 
-const Fib = ({ number, color, onClick }) => (
-  <Card color={color} onClick={() => onClick(f(number))}>
-    {f(number)}
-  </Card>
-);
+interface IndexProps {}
 
-export default class extends React.Component {
-  state = {
-    display: null,
+interface IndexState {
+  color: string;
+  display?: DisplayVal;
+}
+
+export default class Index extends React.Component<IndexProps, IndexState> {
+   public readonly state = {
+    display: undefined,
     color: "white"
   };
 
-  determineColor(idx) {
+  private determineColor(idx: number): string {
     const red = [0, 3, 6, 9, 12, 15, 18];
     const yellow = [1, 4, 7, 10, 13, 16];
     const colors = ["#E05557", "#FFBA00", "#00B6F0"];
@@ -38,9 +37,11 @@ export default class extends React.Component {
       : colors[2];
   }
 
-  update = (n, color) => this.setState({ display: n, color });
+  private update = (n: DisplayVal, color: string): void => {
+    this.setState({ display: n, color })
+  };
 
-  render() {
+  public render(): JSX.Element {
     return (
       <Toggle>
         {({ isOpen, onToggle }) => (
@@ -50,7 +51,7 @@ export default class extends React.Component {
             </Head>
             <ColorMeta color={this.state.color} />
             <Wrapper open={isOpen}>
-              {this.state.display === null ? (
+              {this.state.display === "undefined" ? (
                 <Intro>Tap a Card Below</Intro>
               ) : (
                 <Stage color={this.state.color} display={this.state.display}>
