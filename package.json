@@ -37,6 +37,7 @@
     "@types/next": "^7.0.6",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
-    "@types/styled-components": "^4.1.5"
+    "@types/styled-components": "^4.1.5",
+    "typescript": "^3.2.2"
   }
 }
