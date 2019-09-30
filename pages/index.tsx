@@ -22,7 +22,7 @@ export default function Index(): JSX.Element {
     color: 'white',
   });
 
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(true);
 
   function onToggle() {
     setIsOpen(prev => !prev);

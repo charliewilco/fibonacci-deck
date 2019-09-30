@@ -9,6 +9,7 @@ export default (props: React.PropsWithChildren<CardProps>) =>
   React.createElement(
     'div',
     {
+      onClick: props.onTap,
       style: {
         textAlign: 'center',
         fontSize: '32px',
