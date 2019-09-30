@@ -1,15 +1,18 @@
-import styled from "styled-components";
+import * as React from 'react';
 
 interface WrapperProps {
   open: boolean;
 }
 
-const Wrapper = styled.div<WrapperProps>`
-  display: flex;
-  background: #092e41;
-  position: relative;
-  align-items: center;
-  height: ${props => (!props.open ? "100%" : "calc(100% - 144px)")};
-`;
-
-export default Wrapper;
+export default (props: React.PropsWithChildren<WrapperProps>) => (
+  <div
+    style={{
+      display: 'flex',
+      background: '#092e41',
+      position: 'relative',
+      alignItems: 'center',
+      height: !props.open ? '100%' : 'calc(100% - 144px)',
+    }}>
+    {props.children}
+  </div>
+);

@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import * as React from 'react';
 
-const Intro = styled.p`
-  margin: auto;
-  opacity: 0.5;
-  color: white;
-`;
-
-export default Intro;
+export default (props: React.PropsWithChildren<{}>) => (
+  <p
+    style={{
+      margin: 'auto',
+      opacity: 0.5,
+      color: 'white',
+    }}>
+    {props.children}
+  </p>
+);

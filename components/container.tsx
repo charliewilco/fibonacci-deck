@@ -1,8 +1,7 @@
-import styled from "styled-components";
+import * as React from 'react';
 
-const Container = styled.div`
-  font-family: "Hind", sans-serif;
-  height: 100%;
-`;
-
-export default Container;
+export default (props: React.PropsWithChildren<{}>) => (
+  <div style={{height: '100%', fontFamily: 'Hind, sans-serif'}}>
+    {props.children}
+  </div>
+);
