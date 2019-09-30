@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Toggle from '../components/toggle';
 import Container from '../components/container';
 import Wrapper from '../components/wrapper';
 import Intro from '../components/intro';
@@ -12,20 +11,24 @@ import data, {DisplayVal} from '../components/data';
 import '../components/global.css';
 import ColorMeta from '../components/color-meta';
 
-interface IndexProps {}
-
 interface IndexState {
   color: string;
   display?: DisplayVal;
 }
 
-export default class Index extends React.Component<IndexProps, IndexState> {
-  public readonly state = {
+export default function Index(): JSX.Element {
+  const [state, setState] = React.useState<IndexState>({
     display: undefined,
     color: 'white',
-  };
+  });
 
-  private determineColor(idx: number): string {
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+
+  function onToggle() {
+    setIsOpen(prev => !prev);
+  }
+
+  function determineColor(idx: number): string {
     const red = [0, 3, 6, 9, 12, 15, 18];
     const yellow = [1, 4, 7, 10, 13, 16];
     const colors = ['#E05557', '#FFBA00', '#00B6F0'];
@@ -36,48 +39,40 @@ export default class Index extends React.Component<IndexProps, IndexState> {
       : colors[2];
   }
 
-  private update = (n: DisplayVal, color: string): void => {
-    this.setState({display: n, color});
-  };
-
-  public render(): JSX.Element {
-    return (
-      <Toggle>
-        {({isOpen, onToggle}) => (
-          <Container>
-            <Head>
-              <title>Fibonacci</title>
-            </Head>
-            <ColorMeta color={this.state.color} />
-            <Wrapper open={isOpen}>
-              {this.state.display === 'undefined' ? (
-                <Intro>Tap a Card Below</Intro>
-              ) : (
-                <Stage color={this.state.color} display={this.state.display}>
-                  {this.state.display}
-                </Stage>
-              )}
-              <OpenClose open={isOpen} onClick={onToggle} />
-            </Wrapper>
-            {isOpen && (
-              <Tray>
-                {data.map((d, idx, _data) => {
-                  const color = this.determineColor(idx);
-                  return (
-                    <div key={idx} style={{display: 'inline-block'}}>
-                      <Card
-                        color={color}
-                        onTap={() => this.update(d.value, color)}>
-                        {d.display}
-                      </Card>
-                    </div>
-                  );
-                })}
-              </Tray>
-            )}
-          </Container>
-        )}
-      </Toggle>
-    );
+  function updateCard(n: DisplayVal, color: string): void {
+    setState({display: n, color});
   }
+
+  return (
+    <Container>
+      <Head>
+        <title>Fibonacci</title>
+      </Head>
+      <ColorMeta color={state.color} />
+      <Wrapper open={isOpen}>
+        {state.display === undefined ? (
+          <Intro>Tap a Card Below</Intro>
+        ) : (
+          <Stage color={state.color} display={state.display}>
+            {state.display}
+          </Stage>
+        )}
+        <OpenClose open={isOpen} onClick={onToggle} />
+      </Wrapper>
+      {isOpen && (
+        <Tray>
+          {data.map((d, idx, _data) => {
+            const color = determineColor(idx);
+            return (
+              <div key={idx} style={{display: 'inline-block'}}>
+                <Card color={color} onTap={() => updateCard(d.value, color)}>
+                  {d.display}
+                </Card>
+              </div>
+            );
+          })}
+        </Tray>
+      )}
+    </Container>
+  );
 }
