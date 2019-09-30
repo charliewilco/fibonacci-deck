@@ -1,6 +1,6 @@
 import Document, {Head, Main, NextScript} from 'next/document';
 
-export default class MyDocument extends Document {
+export default class extends Document {
   public render(): JSX.Element {
     return (
       <html>
@@ -9,7 +9,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Hind:400,600,700"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="/_next/static/style.css" />
           <link rel="icon" href="static/favicon.ico" />
         </Head>
         <body>

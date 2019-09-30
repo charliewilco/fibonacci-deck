@@ -5,8 +5,8 @@ interface CardProps {
   onTap(): void;
 }
 
-export default (props: React.PropsWithChildren<CardProps>) =>
-  React.createElement(
+export default function Card(props: React.PropsWithChildren<CardProps>) {
+  return React.createElement(
     'div',
     {
       onClick: props.onTap,
@@ -29,3 +29,4 @@ export default (props: React.PropsWithChildren<CardProps>) =>
     },
     props.children,
   );
+}
