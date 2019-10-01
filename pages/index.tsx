@@ -12,70 +12,36 @@ export default function Index(): JSX.Element {
 
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
 
-  function onToggle() {
-    setIsOpen(prev => !prev);
-  }
-
-  function updateCard(n: DisplayVal): void {
-    setDisplay(n);
-  }
-
   return (
-    <main style={{height: '100%'}}>
+    <main>
       <Head>
         <title>Fibonacci</title>
         <link rel="icon" href="static/favicon.ico" />
       </Head>
       <div
+        className="DisplayWrapper"
         style={{
-          display: 'flex',
-          background: '#092e41',
-          position: 'relative',
-          alignItems: 'center',
           height: !isOpen ? '100%' : 'calc(100% - 144px)',
         }}>
         {!display ? (
-          <p
-            style={{
-              margin: 'auto',
-              opacity: 0.5,
-              color: 'white',
-            }}>
-            Tap a Card Below
-          </p>
+          <p className="Intro">Tap a Card Below</p>
         ) : (
           <header
             className="Stage"
             style={{
-              color: 'white',
-              margin: 'auto',
-              fontWeight: 600,
-              fontSize:
-                display === 'Coffee' || display === 'Defer' ? '5rem' : '12rem',
+              fontSize: display === 'Coffee' || display === 'Defer' ? 80 : 192,
             }}>
             {display}
           </header>
         )}
-        <Chevron open={isOpen} onClick={onToggle} />
+        <Chevron open={isOpen} onClick={() => setIsOpen(prev => !prev)} />
       </div>
       {isOpen && (
-        <div
-          className="Tray"
-          style={{
-            display: 'block',
-            position: 'fixed',
-            whiteSpace: 'nowrap',
-            overflowX: 'auto',
-            background: '#063651',
-            padding: '16px',
-            left: '0',
-            right: '0',
-            WebkitOverflowScrolling: 'touch',
-            msOverflowStyle: '-ms-autohiding-scrollbar',
-          }}>
+        <div className="Tray">
           {data.map((d, idx) => {
+            const onTap = () => setDisplay(d.value);
             return (
-              <Card key={idx} onTap={() => updateCard(d.value)}>
+              <Card key={idx} onTap={onTap}>
                 {d.display}
               </Card>
             );

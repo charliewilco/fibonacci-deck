@@ -8,6 +8,7 @@
 
 html,
 body,
+main,
 #__next {
   height: 100%;
 }
@@ -24,11 +25,67 @@ body {
 }
 
 .Stage {
-  color: var(--color);
+  color: white;
+  margin: auto;
+  font-weight: 700;
+}
+
+.Intro {
+  margin: auto;
+  opacity: 0.5;
+  color: white;
+}
+
+.Tray {
+  display: block;
+  position: fixed;
+  white-space: nowrap;
+  overflow-x: auto;
+  background: #063651;
+  padding: 16px;
+  left: 0;
+  right: 0;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.Chevron {
+  appearance: none;
+  background: none;
+  display: block;
+  cursor: pointer;
+  border: 0px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 8px;
+  text-align: right;
+}
+
+.DisplayWrapper {
+  display: flex;
+  background: #092e41;
+  position: relative;
+  align-items: center;
 }
 
 .Card {
   border: 2px solid;
+  appearance: none;
+  font-family: inherit;
+  display: inline-block;
+  text-align: center;
+  font-size: 32px;
+  cursor: pointer;
+  font-weight: 300;
+  background: none;
+  line-height: 1;
+  width: 84px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.035), 0 4px 8px rgba(0, 0, 0, 0.07);
+  padding: 40px 8px;
+  margin: 0 8px;
+  border-radius: 4px;
   color: var(--color);
 }
 

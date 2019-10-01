@@ -6,21 +6,7 @@ interface OpenCloseProps {
 }
 
 const Chevron: React.FC<OpenCloseProps> = ({open, onClick}) => (
-  <button
-    style={{
-      appearance: 'none',
-      background: 'none',
-      display: 'block',
-      cursor: 'pointer',
-      border: 0,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      bottom: 0,
-      padding: 8,
-      textAlign: 'right',
-    }}
-    onClick={onClick}>
+  <button className="Chevron" onClick={onClick}>
     <img
       src={
         open
