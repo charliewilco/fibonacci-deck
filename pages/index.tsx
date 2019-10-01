@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Container from '../components/container';
-import Wrapper from '../components/wrapper';
 import Intro from '../components/intro';
 import Stage from '../components/stage';
 import OpenClose from '../components/open-close';
@@ -26,11 +24,19 @@ export default function Index(): JSX.Element {
   }
 
   return (
-    <Container>
+    <main style={{height: '100%'}}>
       <Head>
         <title>Fibonacci</title>
+        <link rel="icon" href="static/favicon.ico" />
       </Head>
-      <Wrapper open={isOpen}>
+      <div
+        style={{
+          display: 'flex',
+          background: '#092e41',
+          position: 'relative',
+          alignItems: 'center',
+          height: !isOpen ? '100%' : 'calc(100% - 144px)',
+        }}>
         {display === undefined ? (
           <Intro>Tap a Card Below</Intro>
         ) : (
@@ -39,10 +45,10 @@ export default function Index(): JSX.Element {
           </Stage>
         )}
         <OpenClose open={isOpen} onClick={onToggle} />
-      </Wrapper>
+      </div>
       {isOpen && (
         <Tray>
-          {data.map((d, idx, _data) => {
+          {data.map((d, idx) => {
             return (
               <Card key={idx} onTap={() => updateCard(d.value)}>
                 {d.display}
@@ -51,6 +57,6 @@ export default function Index(): JSX.Element {
           })}
         </Tray>
       )}
-    </Container>
+    </main>
   );
 }
