@@ -5,7 +5,7 @@ interface OpenCloseProps {
   onClick: (x: any) => void;
 }
 
-const OpenClose: React.FC<OpenCloseProps> = ({open, onClick}) => (
+const Chevron: React.FC<OpenCloseProps> = ({open, onClick}) => (
   <button
     style={{
       appearance: 'none',
@@ -32,4 +32,4 @@ const OpenClose: React.FC<OpenCloseProps> = ({open, onClick}) => (
   </button>
 );
 
-export default OpenClose;
+export default Chevron;

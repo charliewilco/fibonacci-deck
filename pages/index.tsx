@@ -1,9 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Intro from '../components/intro';
-import Stage from '../components/stage';
-import OpenClose from '../components/open-close';
-import Tray from '../components/tray';
+import Chevron from '../components/open-close';
 import Card from '../components/card';
 import data, {DisplayVal} from '../components/data';
 import '../components/global.css';
@@ -37,17 +34,45 @@ export default function Index(): JSX.Element {
           alignItems: 'center',
           height: !isOpen ? '100%' : 'calc(100% - 144px)',
         }}>
-        {display === undefined ? (
-          <Intro>Tap a Card Below</Intro>
+        {!display ? (
+          <p
+            style={{
+              margin: 'auto',
+              opacity: 0.5,
+              color: 'white',
+            }}>
+            Tap a Card Below
+          </p>
         ) : (
-          <Stage color="white" display={display}>
+          <header
+            className="Stage"
+            style={{
+              color: 'white',
+              margin: 'auto',
+              fontWeight: 600,
+              fontSize:
+                display === 'Coffee' || display === 'Defer' ? '5rem' : '12rem',
+            }}>
             {display}
-          </Stage>
+          </header>
         )}
-        <OpenClose open={isOpen} onClick={onToggle} />
+        <Chevron open={isOpen} onClick={onToggle} />
       </div>
       {isOpen && (
-        <Tray>
+        <div
+          className="Tray"
+          style={{
+            display: 'block',
+            position: 'fixed',
+            whiteSpace: 'nowrap',
+            overflowX: 'auto',
+            background: '#063651',
+            padding: '16px',
+            left: '0',
+            right: '0',
+            WebkitOverflowScrolling: 'touch',
+            msOverflowStyle: '-ms-autohiding-scrollbar',
+          }}>
           {data.map((d, idx) => {
             return (
               <Card key={idx} onTap={() => updateCard(d.value)}>
@@ -55,7 +80,7 @@ export default function Index(): JSX.Element {
               </Card>
             );
           })}
-        </Tray>
+        </div>
       )}
     </main>
   );
