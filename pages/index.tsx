@@ -9,18 +9,11 @@ import Tray from '../components/tray';
 import Card from '../components/card';
 import data, {DisplayVal} from '../components/data';
 import '../components/global.css';
-import ColorMeta from '../components/color-meta';
-
-interface IndexState {
-  color: string;
-  display?: DisplayVal;
-}
 
 export default function Index(): JSX.Element {
-  const [state, setState] = React.useState<IndexState>({
-    display: undefined,
-    color: 'white',
-  });
+  const [display, setDisplay] = React.useState<DisplayVal | undefined>(
+    undefined,
+  );
 
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
 
@@ -28,19 +21,8 @@ export default function Index(): JSX.Element {
     setIsOpen(prev => !prev);
   }
 
-  function determineColor(idx: number): string {
-    const red = [0, 3, 6, 9, 12, 15, 18];
-    const yellow = [1, 4, 7, 10, 13, 16];
-    const colors = ['#E05557', '#FFBA00', '#00B6F0'];
-    return red.includes(idx)
-      ? colors[0]
-      : yellow.includes(idx)
-      ? colors[1]
-      : colors[2];
-  }
-
-  function updateCard(n: DisplayVal, color: string): void {
-    setState({display: n, color});
+  function updateCard(n: DisplayVal): void {
+    setDisplay(n);
   }
 
   return (
@@ -48,13 +30,12 @@ export default function Index(): JSX.Element {
       <Head>
         <title>Fibonacci</title>
       </Head>
-      <ColorMeta color={state.color} />
       <Wrapper open={isOpen}>
-        {state.display === undefined ? (
+        {display === undefined ? (
           <Intro>Tap a Card Below</Intro>
         ) : (
-          <Stage color={state.color} display={state.display}>
-            {state.display}
+          <Stage color="white" display={display}>
+            {display}
           </Stage>
         )}
         <OpenClose open={isOpen} onClick={onToggle} />
@@ -62,13 +43,10 @@ export default function Index(): JSX.Element {
       {isOpen && (
         <Tray>
           {data.map((d, idx, _data) => {
-            const color = determineColor(idx);
             return (
-              <div key={idx} style={{display: 'inline-block'}}>
-                <Card color={color} onTap={() => updateCard(d.value, color)}>
-                  {d.display}
-                </Card>
-              </div>
+              <Card key={idx} onTap={() => updateCard(d.value)}>
+                {d.display}
+              </Card>
             );
           })}
         </Tray>

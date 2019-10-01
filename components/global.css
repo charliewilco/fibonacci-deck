@@ -20,3 +20,24 @@ html {
 body {
   text-rendering: optimizeLegibility;
 }
+
+.Stage {
+  color: var(--color);
+}
+
+.Card {
+  border: 2px solid;
+  color: var(--color);
+}
+
+.Card:nth-child(3n + 1) {
+  --color: #e05557;
+}
+
+.Card:nth-child(3n + 2) {
+  --color: #ffba00;
+}
+
+.Card:nth-child(3n + 3) {
+  --color: #00b6f0;
+}
