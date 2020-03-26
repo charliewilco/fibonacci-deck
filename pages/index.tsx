@@ -1,13 +1,12 @@
-import * as React from 'react';
-import Head from 'next/head';
-import Chevron from '../components/open-close';
-import Card from '../components/card';
-import data, {DisplayVal} from '../components/data';
-import '../components/global.css';
+import * as React from "react";
+import Head from "next/head";
+import Chevron from "../components/open-close";
+import Card from "../components/card";
+import data, { DisplayVal } from "../components/data";
 
 export default function Index(): JSX.Element {
   const [display, setDisplay] = React.useState<DisplayVal | undefined>(
-    undefined,
+    undefined
   );
 
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
@@ -21,16 +20,18 @@ export default function Index(): JSX.Element {
       <div
         className="DisplayWrapper"
         style={{
-          height: !isOpen ? '100%' : 'calc(100% - 144px)',
-        }}>
+          height: !isOpen ? "100%" : "calc(100% - 144px)"
+        }}
+      >
         {!display ? (
           <p className="Intro">Tap a Card Below</p>
         ) : (
           <header
             className="Stage"
             style={{
-              fontSize: display === 'Coffee' || display === 'Defer' ? 80 : 192,
-            }}>
+              fontSize: display === "Coffee" || display === "Defer" ? 80 : 192
+            }}
+          >
             {display}
           </header>
         )}
