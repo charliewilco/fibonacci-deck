@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { DisplayContext } from "./display-context";
+import { useContext, useState } from "react";
+import { Display, DisplayContext } from "./display-context";
 import { DisplayData } from "./fibonacci-cards";
 
 export const Stage = () => {
@@ -21,9 +21,9 @@ export const Stage = () => {
 export const Tray = ({ cards }: { cards: DisplayData[] }) => {
   return (
     <div className="Tray">
-      {cards.map((d, idx) => {
-        return <Card key={idx} datum={d} />;
-      })}
+      {cards.map((d, idx) => (
+        <Card key={idx} datum={d} />
+      ))}
     </div>
   );
 };
@@ -68,5 +68,26 @@ export const ArrowIcon = ({ open, onClick }: OpenCloseProps) => {
         <polyline points={points} />
       </svg>
     </button>
+  );
+};
+
+interface UIProps {
+  data: DisplayData[];
+}
+
+export const FibonacciUI = ({ data }: UIProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const style: React.CSSProperties = {
+    height: !isOpen ? "100%" : "calc(100% - 144px)",
+  };
+
+  return (
+    <Display>
+      <div className="DisplayWrapper" style={style}>
+        <Stage />
+        <ArrowIcon open={isOpen} onClick={() => setIsOpen((prev) => !prev)} />
+      </div>
+      {isOpen && <Tray cards={data} />}
+    </Display>
   );
 };
