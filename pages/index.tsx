@@ -1,27 +1,25 @@
-import * as React from "react";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { FibonacciUI } from "../components/ui";
 import { DisplayData, createData } from "../components/fibonacci-cards";
 
-export const getStaticProps: GetStaticProps<{ data: DisplayData[] }> =
-  async () => {
-    return {
-      props: {
-        data: createData(),
-      },
-      revalidate: false,
-    };
+export const getStaticProps: GetStaticProps<{
+  data: DisplayData[];
+}> = async () => {
+  return {
+    props: {
+      data: createData(),
+    },
+    revalidate: false,
   };
+};
 
-type IndexProps = InferGetStaticPropsType<typeof getStaticProps>;
-
-const Index = ({ data }: IndexProps): JSX.Element => {
+const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       <Head>
         <title>Fibonacci</title>
-        <link rel="icon" href="static/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <FibonacciUI data={data} />
     </main>

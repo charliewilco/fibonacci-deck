@@ -1,15 +1,9 @@
-import {
-  createContext,
-  useState,
-  Dispatch,
-  SetStateAction,
-  createElement,
-} from "react";
+import { createContext, useState, createElement } from "react";
 import { DisplayVal } from "./fibonacci-cards";
 
 type DisplayContextType = [
   DisplayVal | null,
-  Dispatch<SetStateAction<DisplayVal | null>>
+  React.Dispatch<React.SetStateAction<DisplayVal | null>>
 ];
 
 export const DisplayContext = createContext<DisplayContextType>([
@@ -17,7 +11,7 @@ export const DisplayContext = createContext<DisplayContextType>([
   () => {},
 ]);
 
-export const Display: React.FC = ({ children }) => {
+export const Display = ({ children }: { children: React.ReactNode }) => {
   const [display, setDisplay] = useState<DisplayVal | null>(null);
 
   return createElement(
