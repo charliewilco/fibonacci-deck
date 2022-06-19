@@ -18,9 +18,20 @@ export const Stage = () => {
   );
 };
 
-export const Tray = ({ cards }: { cards: DisplayData[] }) => {
+export const Tray = ({
+  cards,
+  open,
+}: {
+  cards: DisplayData[];
+  open: boolean;
+}) => {
   return (
-    <div className="Tray">
+    <div
+      className="Tray"
+      id="tray"
+      aria-labelledby="tray-button"
+      aria-expanded={open}
+    >
       {cards.map((d, idx) => (
         <Card key={idx} datum={d} />
       ))}
@@ -53,6 +64,9 @@ export const ArrowIcon = ({ open, onClick }: OpenCloseProps) => {
     <button
       className="Chevron"
       onClick={onClick}
+      aria-expanded={open}
+      id="tray-button"
+      aria-controls="tray"
       aria-label="Open or Close the Card Tray"
     >
       <svg
@@ -87,7 +101,7 @@ export const FibonacciUI = ({ data }: UIProps) => {
         <Stage />
         <ArrowIcon open={isOpen} onClick={() => setIsOpen((prev) => !prev)} />
       </div>
-      {isOpen && <Tray cards={data} />}
+      <Tray cards={data} open={isOpen} />
     </Display>
   );
 };

@@ -63,6 +63,10 @@ body {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.Tray[aria-expanded="false"] {
+  display: none;
+}
+
 .Chevron {
   appearance: none;
   background: none;
