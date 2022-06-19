@@ -52,13 +52,10 @@ body {
 
 .Tray {
   display: block;
-  position: fixed;
   white-space: nowrap;
   overflow-x: auto;
   background: var(--background-alt);
   padding: 16px;
-  left: 0;
-  right: 0;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -83,10 +80,17 @@ body {
 }
 
 .DisplayWrapper {
+  flex: 1;
   display: flex;
   background: var(--background);
   position: relative;
   align-items: center;
+}
+
+.FlexDisplay {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .Card {
